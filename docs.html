@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WPC Hub — Documentation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="docs.css" />
+</head>
+<body>
+
+  <!-- ── Navbar ── -->
+  <nav class="docs-navbar">
+    <div class="docs-navbar-brand">
+      <div class="docs-logo">
+        <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="7" height="7" rx="1.5" stroke="white" stroke-width="1.4"/>
+          <rect x="10" y="1" width="7" height="7" rx="1.5" stroke="white" stroke-width="1.4"/>
+          <rect x="1" y="10" width="7" height="7" rx="1.5" stroke="white" stroke-width="1.4"/>
+          <rect x="10" y="10" width="7" height="7" rx="1.5" fill="white"/>
+        </svg>
+      </div>
+      <span class="docs-brand-name" data-i18n="nav_title">WPC Hub</span>
+      <span class="docs-brand-sep">·</span>
+      <span class="docs-brand-label" data-i18n="nav_subtitle">Documentation</span>
+    </div>
+
+    <div class="docs-navbar-controls">
+      <div class="lang-switcher">
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="pt">PT</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="ko">KO</button>
+      </div>
+      <button id="docs-theme-toggle" class="docs-theme-btn" title="Toggle theme" aria-label="Toggle light/dark mode">
+        <svg class="theme-icon-dark" viewBox="0 0 18 18" fill="none">
+          <path d="M15.5 10.5A7 7 0 017.5 2.5a7.002 7.002 0 000 13 7 7 0 008-5z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <svg class="theme-icon-light" viewBox="0 0 18 18" fill="none">
+          <circle cx="9" cy="9" r="3.5" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M9 1.5v1.6M9 14.9v1.6M1.5 9h1.6M14.9 9h1.6M3.93 3.93l1.13 1.13M12.94 12.94l1.13 1.13M14.07 3.93l-1.13 1.13M5.06 12.94l-1.13 1.13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── Layout ── -->
+  <div class="docs-layout">
+
+    <!-- ── Sidebar ── -->
+    <aside class="docs-sidebar">
+      <nav class="sidebar-nav" aria-label="Documentation navigation">
+
+        <a href="#overview" class="sidebar-link top-level" data-i18n="nav_overview">Overview</a>
+        <a href="#setup"    class="sidebar-link top-level" data-i18n="nav_setup">Initial Setup</a>
+
+        <div class="sidebar-group-title" data-i18n="nav_reporting">Reporting</div>
+        <a href="#report"     class="sidebar-link" data-i18n="nav_report">Report</a>
+        <a href="#checklist"  class="sidebar-link" data-i18n="nav_checklist">Checklist</a>
+        <a href="#quicktext"  class="sidebar-link" data-i18n="nav_quicktext">QuickText</a>
+        <a href="#screenshot" class="sidebar-link" data-i18n="nav_screenshot">Screenshot</a>
+        <a href="#snapslide"  class="sidebar-link" data-i18n="nav_snapslide">SnapSlide</a>
+
+        <div class="sidebar-group-title" data-i18n="nav_qa">QA &amp; Validation</div>
+        <a href="#countryscan" class="sidebar-link" data-i18n="nav_countryscan">Content Scan</a>
+        <a href="#cta"         class="sidebar-link" data-i18n="nav_cta">CTA Check</a>
+        <a href="#links"       class="sidebar-link" data-i18n="nav_links">Link Check</a>
+        <a href="#overflow"    class="sidebar-link" data-i18n="nav_overflow">Text Clipping</a>
+        <a href="#viewfast"    class="sidebar-link" data-i18n="nav_viewfast">Mobile View</a>
+
+        <div class="sidebar-group-title" data-i18n="nav_shopapp">ShopApp</div>
+        <a href="#shopapp" class="sidebar-link" data-i18n="nav_shopapp_tools">ShopApp Tools</a>
+
+      </nav>
+    </aside>
+
+    <!-- ── Main content ── -->
+    <main class="docs-content">
+
+      <section id="overview" class="docs-section">
+        <h2 data-i18n="overview_title">Overview</h2>
+        <div data-i18n-html="overview_content"></div>
+      </section>
+
+      <section id="setup" class="docs-section">
+        <h2 data-i18n="setup_title">Initial Setup</h2>
+        <div data-i18n-html="setup_content"></div>
+      </section>
+
+      <!-- Reporting group -->
+      <div class="docs-group-divider">
+        <span class="section-badge badge-reporting" data-i18n="badge_reporting">Reporting</span>
+      </div>
+
+      <section id="report" class="docs-section">
+        <h2 data-i18n="report_title">Report</h2>
+        <div data-i18n-html="report_content"></div>
+      </section>
+
+      <section id="checklist" class="docs-section">
+        <h2 data-i18n="checklist_title">Checklist</h2>
+        <div data-i18n-html="checklist_content"></div>
+      </section>
+
+      <section id="quicktext" class="docs-section">
+        <h2 data-i18n="quicktext_title">QuickText</h2>
+        <div data-i18n-html="quicktext_content"></div>
+      </section>
+
+      <section id="screenshot" class="docs-section">
+        <h2 data-i18n="screenshot_title">Screenshot</h2>
+        <div data-i18n-html="screenshot_content"></div>
+      </section>
+
+      <section id="snapslide" class="docs-section">
+        <h2 data-i18n="snapslide_title">SnapSlide</h2>
+        <div data-i18n-html="snapslide_content"></div>
+      </section>
+
+      <!-- QA & Validation group -->
+      <div class="docs-group-divider">
+        <span class="section-badge badge-qa" data-i18n="badge_qa">QA &amp; Validation</span>
+      </div>
+
+      <section id="countryscan" class="docs-section">
+        <h2 data-i18n="countryscan_title">Content Scan</h2>
+        <div data-i18n-html="countryscan_content"></div>
+      </section>
+
+      <section id="cta" class="docs-section">
+        <h2 data-i18n="cta_title">CTA Check</h2>
+        <div data-i18n-html="cta_content"></div>
+      </section>
+
+      <section id="links" class="docs-section">
+        <h2 data-i18n="links_title">Link Check</h2>
+        <div data-i18n-html="links_content"></div>
+      </section>
+
+      <section id="overflow" class="docs-section">
+        <h2 data-i18n="overflow_title">Text Clipping</h2>
+        <div data-i18n-html="overflow_content"></div>
+      </section>
+
+      <section id="viewfast" class="docs-section">
+        <h2 data-i18n="viewfast_title">Mobile View</h2>
+        <div data-i18n-html="viewfast_content"></div>
+      </section>
+
+      <!-- ShopApp group -->
+      <div class="docs-group-divider">
+        <span class="section-badge badge-shopapp" data-i18n="badge_shopapp">ShopApp</span>
+      </div>
+
+      <section id="shopapp" class="docs-section">
+        <h2 data-i18n="shopapp_title">ShopApp Tools</h2>
+        <div data-i18n-html="shopapp_content"></div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="docs.js"></script>
+</body>
+</html>

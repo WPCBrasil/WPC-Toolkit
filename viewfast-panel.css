@@ -1,0 +1,74 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Mono', 'Courier New', monospace;
+  background: #03030D;
+  color: #EEEEF8;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* ── Navbar ─────────────────────────────────────────────── */
+.vf-navbar {
+  width: 100%;
+  padding: 8px 10px;
+  background: #0D0D1F;
+  border-bottom: 1px solid rgba(112,96,240,0.2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.vf-navbar button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #8E8EBA;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 6px;
+  transition: color 0.15s, background 0.15s;
+  flex-shrink: 0;
+}
+.vf-navbar button:hover  { color: #EEEEF8; background: rgba(255,255,255,0.06); }
+.vf-navbar button:disabled { color: #444; cursor: not-allowed; }
+
+#vf-url {
+  flex: 1;
+  background: #181836;
+  border: 1px solid rgba(112,96,240,0.25);
+  border-radius: 6px;
+  color: #EEEEF8;
+  font-family: inherit;
+  font-size: 11px;
+  padding: 5px 8px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+#vf-url:focus { border-color: rgba(98,166,248,0.6); }
+
+/* ── Device frame ────────────────────────────────────────── */
+.vf-device {
+  width: 350px;
+  flex: 1;
+  max-height: calc(100vh - 54px);
+  background: #181836;
+  border-radius: 20px;
+  padding: 4px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.5), 0 0 0 1px rgba(112,96,240,0.15);
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 16px;
+  background: #fff;
+}

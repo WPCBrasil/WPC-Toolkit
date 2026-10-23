@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>WPC Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+
+  <!-- ── Header ── -->
+  <div class="header">
+    <div class="logo">
+      <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1" y="1" width="7" height="7" rx="1.5" stroke="white" stroke-width="1.4"/>
+        <rect x="10" y="1" width="7" height="7" rx="1.5" stroke="white" stroke-width="1.4"/>
+        <rect x="1" y="10" width="7" height="7" rx="1.5" stroke="white" stroke-width="1.4"/>
+        <rect x="10" y="10" width="7" height="7" rx="1.5" fill="white"/>
+      </svg>
+    </div>
+    <div class="header-text">
+      <h1>WPC Hub</h1>
+      <p class="header-sub">unified qa suite · v3.0</p>
+    </div>
+    <button id="theme-toggle" class="theme-toggle" title="Toggle light/dark mode" aria-label="Toggle theme">
+      <!-- moon = dark mode active; sun = light mode active -->
+      <svg class="theme-icon-dark" viewBox="0 0 18 18" fill="none" width="15" height="15">
+        <path d="M15.5 10.5A7 7 0 017.5 2.5a7.002 7.002 0 000 13 7 7 0 008-5z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <svg class="theme-icon-light" viewBox="0 0 18 18" fill="none" width="15" height="15">
+        <circle cx="9" cy="9" r="3.5" stroke="currentColor" stroke-width="1.3"/>
+        <path d="M9 1.5v1.6M9 14.9v1.6M1.5 9h1.6M14.9 9h1.6M3.93 3.93l1.13 1.13M12.94 12.94l1.13 1.13M14.07 3.93l-1.13 1.13M5.06 12.94l-1.13 1.13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <!-- ── Cookie Cleaner ── -->
+    <div class="cookie-cleaner-wrap">
+      <button id="cookie-cleaner-btn" class="cookie-cleaner-btn" title="Clear cookies" aria-label="Clear cookies" aria-expanded="false">
+        <svg viewBox="0 0 18 18" fill="none" width="16" height="16">
+          <circle cx="8.5" cy="9" r="6" stroke="currentColor" stroke-width="1.3"/>
+          <circle cx="6"   cy="7.5" r=".9" fill="currentColor"/>
+          <circle cx="9.5" cy="6.5" r=".75" fill="currentColor"/>
+          <circle cx="7"   cy="11"  r=".75" fill="currentColor"/>
+          <path d="M11.5 11.5l3 3M14.5 11.5l-3 3" stroke="#EE4876" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <div id="cookie-dropdown" class="cookie-dropdown" hidden>
+        <div class="ck-label">Clear Cookies</div>
+        <button class="ck-item" data-ck="domain">
+          <span class="ck-dot ck-dot-blue"></span>Delete Domain Cookies
+        </button>
+        <button class="ck-item" data-ck="path">
+          <span class="ck-dot ck-dot-violet"></span>Delete Path Cookies
+        </button>
+        <button class="ck-item" data-ck="session">
+          <span class="ck-dot ck-dot-amber"></span>Delete Session Cookies
+        </button>
+        <hr class="ck-divider">
+        <button class="ck-item ck-item-danger" data-ck="all">
+          <span class="ck-dot ck-dot-rose"></span>Clear All
+        </button>
+        <div id="ck-toast" class="ck-toast">
+          <svg viewBox="0 0 12 12" fill="none" width="11" height="11">
+            <circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M4 6l1.5 1.5L8 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span id="ck-toast-msg">Done — reload the page to apply</span>
+        </div>
+      </div>
+    </div>
+    <button id="seo-btn" class="seo-btn" title="SEO report" aria-label="Open SEO panel">SEO</button>
+    <button id="settings-gear" class="settings-gear" title="Settings" aria-label="Open settings">
+      <svg viewBox="0 0 18 18" fill="none" width="16" height="16">
+        <path d="M7 1.8h4l.6 2c.4.2.8.4 1.2.7l2-.7 2 3.5-1.6 1.4c.1.3.1.6.1.9s0 .6-.1.9l1.6 1.4-2 3.5-2-.7c-.4.3-.8.5-1.2.7l-.6 2H7l-.6-2c-.4-.2-.8-.4-1.2-.7l-2 .7-2-3.5 1.6-1.4C2.7 9.6 2.7 9.3 2.7 9s0-.6.1-.9L1.2 6.7l2-3.5 2 .7c.4-.3.8-.5 1.2-.7L7 1.8z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+        <circle cx="9" cy="9" r="2.2" stroke="currentColor" stroke-width="1.2"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- ── Main tab switcher ── -->
+  <nav class="main-tabs" role="tablist">
+    <button class="main-tab" data-group="reporting" role="tab" aria-selected="false">
+      <svg viewBox="0 0 14 14" fill="none" width="12" height="12">
+        <rect x="1.5" y="1.5" width="11" height="11" rx="1.5" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M4 5h6M4 7h6M4 9h4" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+      </svg>
+      Reporting
+    </button>
+    <button class="main-tab" data-group="qa-validation" role="tab" aria-selected="false">
+      <svg viewBox="0 0 14 14" fill="none" width="12" height="12">
+        <circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M9.5 9.5l3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        <path d="M4 6l1.5 1.5 2.5-2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      QA &amp; Validation
+    </button>
+    <button class="main-tab" data-group="production" role="tab" aria-selected="false">
+      <svg viewBox="0 0 14 14" fill="none" width="12" height="12">
+        <rect x="1.5" y="4" width="11" height="8.5" rx="1.5" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M4.5 4V3a2.5 2.5 0 015 0v1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M5 8.5h4M7 6.5v4" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+      </svg>
+      Production
+    </button>
+  </nav>
+
+  <!-- ══════════════════════════════════════════
+       GROUP: REPORTING
+  ══════════════════════════════════════════ -->
+  <div id="group-reporting" class="tab-group">
+
+    <nav class="tabs" role="tablist">
+      <button class="tab active" data-tab="report" role="tab" aria-selected="true">
+        <svg viewBox="0 0 14 14" fill="none"><path d="M2 2h10v10H2z" stroke="currentColor" stroke-width="1.2" rx="1"/><path d="M4 5h6M4 7h6M4 9h4" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+        Report
+      </button>
+      <button class="tab" data-tab="checklist" role="tab" aria-selected="false">
+        <svg viewBox="0 0 14 14" fill="none"><rect x="1.5" y="1.5" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.2"/><path d="M4 7l2 2 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Checklist
+      </button>
+      <button class="tab" data-tab="quicktext" role="tab" aria-selected="false">
+        <svg viewBox="0 0 14 14" fill="none"><path d="M2 4h10M2 7h7M2 10h5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        QuickText
+      </button>
+      <button class="tab" data-tab="screenshot" role="tab" aria-selected="false">
+        <svg viewBox="0 0 14 14" fill="none"><rect x="1.5" y="2.5" width="11" height="8" rx="1.5" stroke="currentColor" stroke-width="1.2"/><circle cx="7" cy="6.5" r="1.8" stroke="currentColor" stroke-width="1.1"/><path d="M5 2.5l.8-1.2h2.4L9 2.5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        Screenshot
+      </button>
+      <button class="tab" data-tab="snapslide" role="tab" aria-selected="false">
+        <svg viewBox="0 0 14 14" fill="none"><rect x="1.5" y="2.5" width="11" height="9" rx="1.5" stroke="currentColor" stroke-width="1.2"/><circle cx="5" cy="6" r="1.2" stroke="currentColor" stroke-width="1"/><path d="M1.5 9.5l3-3 2.5 2.5 2-2L13 10" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        SnapSlide
+      </button>
+    </nav>
+
+    <!-- Lock overlay -->
+    <div id="reporting-lock" class="reporting-lock">
+      <div class="lock-card">
+        <svg class="lock-icon" viewBox="0 0 24 24" fill="none" width="32" height="32">
+          <rect x="4" y="11" width="16" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 11V7a4 4 0 018 0v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <p class="lock-title">Reporting is locked</p>
+        <p class="lock-sub">Enter the password to continue</p>
+        <input type="password" id="lock-input" class="field-input"
+               placeholder="Password" autocomplete="off" />
+        <p id="lock-error" class="lock-error"></p>
+        <button id="lock-submit" class="btn-primary" style="width:100%">Unlock</button>
+      </div>
+    </div>
+
+    <!-- TAB: REPORT -->
+    <section id="tab-report" class="tab-panel active">
+
+      <div class="field-group">
+        <label class="field-label">Category <span class="required">*</span></label>
+        <select id="r-category" class="field-select">
+          <option value="">Select</option>
+          <option>CF</option><option>ShopApp</option><option>Static Page</option><option>PCD</option>
+          <option>PDP</option><option>GNB/Footer</option><option>PF</option>
+          <option>Buy Page</option><option>HOME</option><option>PFS</option>
+          <option>MKT</option><option>Offer</option><option>EOL redirect</option>
+          <option>EPP</option><option>Business page</option><option>SEO</option>
+        </select>
+      </div>
+
+      <div class="row-2">
+        <div class="field-group">
+          <label class="field-label">Sub <span class="required">*</span></label>
+          <select id="r-sub" class="field-select">
+            <option value="">Select</option>
+            <option>US</option><option>BR</option><option>CO</option><option>LATIN</option>
+            <option>LATIN_EN</option><option>MX</option><option>CL</option>
+            <option>PE</option><option>AR</option><option>PY</option>
+            <option>UY</option><option>EURO</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Status <span class="required">*</span></label>
+          <select id="r-status" class="field-select">
+            <option value="">Select</option>
+            <option>APPROVED</option><option>REJECTED</option>
+            <option>PENDING</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="r-author">Author <span class="required">*</span></label>
+        <button type="button" id="r-author" class="author-field is-empty" aria-haspopup="dialog">
+          <span id="r-author-avatar" class="author-avatar" aria-hidden="true">?</span>
+          <span class="author-field-text">
+            <span id="r-author-name" class="author-field-name">Choose who made this ticket</span>
+            <span id="r-author-role" class="author-field-role"></span>
+          </span>
+          <span id="r-author-action" class="author-field-action">Choose</span>
+        </button>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Reason for adjustment</label>
+        <select id="r-reason" class="field-select">
+          <option value="">Optional</option>
+          <option>HDR_ISSUE</option><option>SEO_PROBLEM</option><option>GAL_ISSUE</option>
+          <option>TRN_ISSUE</option><option>FEA_ISSUE</option><option>BLK_ISSUE</option>
+          <option>AST_ISSUE</option><option>REG_ISSUE</option><option>MISS_ISSUE</option>
+          <option>WDT_ISSUE</option><option>WDT_ASSET</option><option>WDT_LINK</option>
+          <option>RTB_ISSUE</option><option>CUST_ISSUE</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">QA Username <span class="required">*</span></label>
+        <div class="input-row">
+          <input type="text" id="r-qa" class="field-input" placeholder="Enter username" />
+          <button id="r-save" class="btn-icon" title="Save username">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M2 7.5l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button id="r-clear" class="btn-icon btn-danger" title="Clear username">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label label-with-action">
+          Comments
+          <button id="r-translate" class="btn-translate" title="Translate PT → EN">Translate</button>
+        </label>
+        <textarea id="r-comments" class="field-textarea" placeholder="Optional" rows="2"></textarea>
+      </div>
+
+      <div class="report-actions">
+        <a href="https://docs.google.com/spreadsheets/d/1howJ0KeyiEfvkRcx0l2kBv8cHsPsXU2atoE2LI35Kps/edit?gid=0#gid=0"
+           target="_blank" class="btn-ghost">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M8 2h4v4M6 8l6-6M2 4h3v8H2z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Sheets
+        </a>
+        <button id="r-cancel" class="btn-ghost">Cancel</button>
+        <button id="r-report" class="btn-primary">Send Report</button>
+      </div>
+
+    </section>
+
+    <!-- TAB: CHECKLIST -->
+    <section id="tab-checklist" class="tab-panel">
+
+      <div class="field-group">
+        <label class="field-label">QA ID</label>
+        <div class="input-row">
+          <input type="text" id="c-username" class="field-input" placeholder="Enter QA ID"
+                 autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+          <button id="c-save" class="btn-icon" title="Save QA ID">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M2 7.5l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button id="c-clear" class="btn-icon btn-danger" title="Clear QA ID">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Select template</label>
+        <div class="checklist-grid">
+          <label class="check-item"><input type="checkbox" id="m1" data-model="Standard"> <span>Standard</span></label>
+          <label class="check-item"><input type="checkbox" id="m2" data-model="FOOTER"> <span>FOOTER</span></label>
+          <label class="check-item"><input type="checkbox" id="m3" data-model="GNB"> <span>GNB</span></label>
+          <label class="check-item"><input type="checkbox" id="m4" data-model="HOME"> <span>HOME</span></label>
+          <label class="check-item"><input type="checkbox" id="m5" data-model="OFFER"> <span>OFFER</span></label>
+          <label class="check-item"><input type="checkbox" id="m6" data-model="PCD"> <span>PCD</span></label>
+          <label class="check-item"><input type="checkbox" id="m7" data-model="PDP"> <span>PDP</span></label>
+          <label class="check-item"><input type="checkbox" id="m8" data-model="PF"> <span>PF</span></label>
+          <label class="check-item"><input type="checkbox" id="m9" data-model="PFShomeapliences"> <span>PFS Home</span></label>
+          <label class="check-item"><input type="checkbox" id="m10" data-model="PFSmobile"> <span>PFS Mobile</span></label>
+          <label class="check-item"><input type="checkbox" id="m11" data-model="Redirect"> <span>Redirect</span></label>
+        </div>
+      </div>
+
+      <div class="checklist-actions">
+        <button id="c-generate" class="btn-primary">Create checklist</button>
+        <button id="c-download" class="btn-primary btn-success" style="display:none">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M7 2v7M4 7l3 3 3-3M2 11h10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Download
+        </button>
+      </div>
+
+      <p class="version-note">checklist version: QA_Checklist_20260512_v4.1</p>
+
+    </section>
+
+    <!-- TAB: QUICKTEXT -->
+    <section id="tab-quicktext" class="tab-panel">
+
+      <div class="field-group">
+        <label class="field-label">QA Username</label>
+        <div class="input-row">
+          <input type="text" id="q-username" class="field-input" placeholder="Enter username" />
+          <button id="q-save" class="btn-icon" title="Save username">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M2 7.5l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button id="q-clear" class="btn-icon btn-danger" title="Clear username">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="q-templates"></div>
+
+    </section>
+
+    <!-- TAB: SCREENSHOT -->
+    <section id="tab-screenshot" class="tab-panel">
+
+      <div class="sc-mode-toggle" role="tablist">
+        <button id="sc-mode-single" type="button" class="sc-mode-btn active" role="tab" aria-selected="true">Single Page</button>
+        <button id="sc-mode-bulk" type="button" class="sc-mode-btn" role="tab" aria-selected="false">Bulk</button>
+      </div>
+
+      <div id="sc-single-block">
+        <div class="audit-actions-row">
+          <button id="sc-canvas-capture" class="btn-capture" style="flex:1">CanvasPNG</button>
+          <button id="sc-pdf-capture"    class="btn-capture" style="flex:1">PDFtoPNG</button>
+        </div>
+
+        <div id="sc-status" class="audit-status" style="display:none;"></div>
+        <div id="sc-preview" class="sc-preview" style="display:none;">
+          <img id="sc-img" alt="Screenshot preview" />
+          <div class="audit-actions-row" style="margin-top:8px">
+            <button id="sc-download" class="btn-ghost" style="flex:1">Download PNG</button>
+            <button id="sc-copy" class="btn-ghost" style="flex:1">Copy Image</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- BULK SCREENSHOT — captura em massa, em segundo plano (ported from bulk-screenshot-extension) -->
+      <div id="sc-bulk-block" style="display:none;">
+
+        <div id="bs-phase-input">
+          <p class="audit-desc" style="margin-bottom:8px;">Paste one URL per line. Each page briefly takes focus while it loads and captures (needed so images and lazy content actually render), then closes automatically and your previous tab comes back. Max 50 URLs per batch.</p>
+          <textarea id="bs-urls" class="field-textarea" rows="8" placeholder="https://example.com/page-1&#10;https://example.com/page-2" style="font-size:11px;"></textarea>
+          <p id="bs-warning" class="bs-warning" style="display:none;"></p>
+          <button id="bs-start" class="btn-primary" style="width:100%;margin-top:8px;">Start Batch</button>
+        </div>
+
+        <div id="bs-phase-running" style="display:none;">
+          <div class="bs-progress-row">
+            <span id="bs-progress-label">Starting… 0/0</span>
+            <span id="bs-progress-pct">0%</span>
+          </div>
+          <div class="cl-progress-bar">
+            <div id="bs-progress-fill" class="cl-progress-fill"></div>
+          </div>
+          <p id="bs-progress-url" class="meta-text" style="display:none;"></p>
+          <button id="bs-cancel" class="btn-ghost" style="width:100%;margin-top:8px;">Cancel</button>
+        </div>
+
+        <div id="bs-phase-done" style="display:none;">
+          <div class="bs-summary-row">
+            <span id="bs-success-count" class="bs-count ok">0 captured</span>
+            <span id="bs-error-count" class="bs-count danger" style="display:none;">0 failed</span>
+          </div>
+          <div id="bs-error-list" class="audit-list" style="display:none;margin-top:8px;"></div>
+          <button id="bs-download" class="btn-primary" style="width:100%;margin-top:8px;">Download ZIP</button>
+          <button id="bs-reset" class="btn-ghost" style="width:100%;margin-top:6px;font-size:11px">Run another batch</button>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- TAB: SNAPSLIDE -->
+    <section id="tab-snapslide" class="tab-panel">
+
+      <div class="field-group">
+        <label class="field-label">Presentation ID</label>
+        <input type="text" id="ss-presId" class="field-input" placeholder="Google Slides presentation ID" />
+      </div>
+
+      <div class="ss-canvas-wrap" id="ss-canvasWrap" tabindex="0">
+        <canvas id="ss-canvas"></canvas>
+        <div class="ss-placeholder" id="ss-placeholder">
+          Clique aqui e pressione <strong>Ctrl+V</strong> para colar o print
+        </div>
+      </div>
+
+      <div class="row-2">
+        <div class="field-group">
+          <label class="field-label">Page type</label>
+          <input type="text" id="ss-pageType" class="field-input" placeholder="Ex: Home, PDP…" />
+        </div>
+        <div class="field-group">
+          <label class="field-label">Error category</label>
+          <select id="ss-errorCat" class="field-select">
+            <option value="HDR_ISSUE">HDR_ISSUE</option>
+            <option value="SEO_PROBLEM">SEO_PROBLEM</option>
+            <option value="GAL_ISSUE">GAL_ISSUE</option>
+            <option value="TRN_ISSUE">TRN_ISSUE</option>
+            <option value="FEA_ISSUE">FEA_ISSUE</option>
+            <option value="BLK_ISSUE">BLK_ISSUE</option>
+            <option value="AST_ISSUE">AST_ISSUE</option>
+            <option value="REG_ISSUE">REG_ISSUE</option>
+            <option value="MISS_ISSUE">MISS_ISSUE</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label label-with-action">
+          Error description
+          <button id="ss-translate" class="btn-translate" title="Translate PT → EN">Translate</button>
+        </label>
+        <textarea id="ss-errorDesc" class="field-textarea" placeholder="Descreva o problema…" rows="2"></textarea>
+      </div>
+
+      <div class="report-actions">
+        <button id="ss-slides" class="btn-ghost">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M8 2h4v4M6 8l6-6M2 4h3v8H2z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Slides
+        </button>
+        <button id="ss-clear" class="btn-ghost">Clear</button>
+        <button id="ss-send" class="btn-primary">Send to Slides</button>
+      </div>
+
+    </section>
+
+  </div><!-- /group-reporting -->
+
+  <!-- ══════════════════════════════════════════
+       GROUP: QA & VALIDATION
+  ══════════════════════════════════════════ -->
+  <div id="group-qa-validation" class="tab-group">
+
+    <nav class="tabs" role="tablist">
+      <button class="tab active" data-tab="countryscan" role="tab" aria-selected="true">
+        <svg viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.2"/><path d="M7 1.5S5 4 5 7s2 5.5 2 5.5M7 1.5S9 4 9 7s-2 5.5-2 5.5M1.5 7h11" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        Content Scan
+      </button>
+      <button class="tab" data-tab="cta" role="tab" aria-selected="false">
+        <svg viewBox="0 0 14 14" fill="none"><rect x="1" y="4" width="12" height="6" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M4 7h6M7 5.5v3" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+        CTA Check
+      </button>
+      <button class="tab" data-tab="overflow" role="tab" aria-selected="false">
+        <svg viewBox="0 0 14 14" fill="none"><rect x="1.5" y="1.5" width="11" height="11" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M4 5h6M4 7h7M4 9h8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/><path d="M11.5 10l1.5 0" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-dasharray="1 1"/></svg>
+        Text Clipping
+      </button>
+      <button class="tab" data-tab="page-to-image" role="tab" aria-selected="false">
+        <svg viewBox="0 0 14 14" fill="none"><rect x="1.5" y="2.5" width="11" height="8" rx="1.5" stroke="currentColor" stroke-width="1.2"/><circle cx="7" cy="6.5" r="1.8" stroke="currentColor" stroke-width="1.1"/><path d="M5 2.5l.8-1.2h2.4L9 2.5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        Screenshot
+      </button>
+      <button class="tab" data-tab="viewfast" role="tab" aria-selected="false">
+        <svg viewBox="0 0 14 14" fill="none"><rect x="3" y="1.5" width="8" height="11" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M5.5 10.5h3" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/><path d="M5.5 4.5h3M5.5 6.5h3M5.5 8.5h1.5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+        Mobile View
+      </button>
+      <button class="tab" data-tab="video-check" role="tab" aria-selected="false">
+        <svg viewBox="0 0 14 14" fill="none"><rect x="1.5" y="3" width="8.5" height="8" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M10 6l2.5-1.7v5.4L10 8" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg>
+        Video Check
+      </button>
+    </nav>
+
+    <!-- TAB: COUNTRYSCAN -->
+    <section id="tab-countryscan" class="tab-panel active">
+
+      <div class="cs-header-row">
+        <div class="field-group" style="flex:1">
+          <label class="field-label">Language</label>
+          <select class="field-select" id="cs-langSelect">
+            <option value="auto">🔍 Auto-detect</option>
+            <optgroup label="Common">
+              <option value="pt">🇧🇷 Português</option>
+              <option value="en">🇺🇸 English</option>
+              <option value="es">🇪🇸 Español</option>
+              <option value="fr">🇫🇷 Français</option>
+              <option value="de">🇩🇪 Deutsch</option>
+              <option value="it">🇮🇹 Italiano</option>
+              <option value="zh">🇨🇳 中文</option>
+              <option value="ja">🇯🇵 日本語</option>
+              <option value="ko">🇰🇷 한국어</option>
+            </optgroup>
+            <optgroup label="Europe">
+              <option value="nl">🇳🇱 Nederlands</option>
+              <option value="pl">🇵🇱 Polski</option>
+              <option value="ru">🇷🇺 Русский</option>
+              <option value="sv">🇸🇪 Svenska</option>
+              <option value="da">🇩🇰 Dansk</option>
+              <option value="fi">🇫🇮 Suomi</option>
+              <option value="el">🇬🇷 Ελληνικά</option>
+            </optgroup>
+            <optgroup label="Asia / Middle East">
+              <option value="ar">🇸🇦 العربية</option>
+              <option value="hi">🇮🇳 हिन्दी</option>
+              <option value="th">🇹🇭 ภาษาไทย</option>
+              <option value="tr">🇹🇷 Türkçe</option>
+            </optgroup>
+          </select>
+        </div>
+        <button class="btn-primary cs-scan-btn" id="cs-scanBtn">Scan</button>
+      </div>
+
+      <div class="cs-accordion" id="cs-accordion">
+        <div class="cs-accordion-header" id="cs-accordionHeader">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+            <rect x="1" y="1" width="4" height="4" rx="1" stroke="#7A798F" stroke-width="1.2"/>
+            <rect x="6" y="1" width="4" height="4" rx="1" stroke="#7A798F" stroke-width="1.2"/>
+            <rect x="1" y="6" width="4" height="4" rx="1" stroke="#7A798F" stroke-width="1.2"/>
+            <rect x="6" y="6" width="4" height="4" rx="1" stroke="#7A798F" stroke-width="1.2"/>
+          </svg>
+          QA Tools
+          <span class="cs-badge">2</span>
+          <svg class="cs-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+            <path d="M1 1l4 4 4-4" stroke="#7A798F" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="cs-accordion-body">
+          <div class="cs-qa-panel">
+            <div class="cs-qa-panel-header">
+              <span class="cs-qa-label">Asset Country Check</span>
+              <button class="btn-xs" id="cs-imgAuditBtn">Scan</button>
+            </div>
+            <div id="cs-imgAuditResult" class="cs-result-box" style="display:none;"></div>
+          </div>
+          <div class="cs-qa-panel">
+            <div class="cs-qa-panel-header">
+              <span class="cs-qa-label">CTA Country Check</span>
+              <button class="btn-xs" id="cs-ctaAuditBtn">Scan</button>
+            </div>
+            <div id="cs-ctaAuditResult" class="cs-result-box" style="display:none;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="cs-loadingState" class="cs-loading" style="display:none;">
+        <div class="cs-spinner"></div>
+        <p>Scanning page…</p>
+      </div>
+      <div id="cs-errorState" class="cs-error" style="display:none;">
+        <p id="cs-errorMsg">Could not access this page.</p>
+      </div>
+
+      <div id="cs-resultState" class="cs-result">
+        <div class="cs-info-card">
+          <div class="cs-info-row"><span class="cs-info-key">Title</span><span class="cs-info-val" id="cs-pageTitle">—</span></div>
+          <div class="cs-info-row" id="cs-rowDesc" style="display:none;"><span class="cs-info-key">Description</span><span class="cs-info-val" id="cs-pageDesc">—</span></div>
+          <div class="cs-info-row"><span class="cs-info-key">URL</span><span class="cs-info-val" id="cs-pageUrl">—</span></div>
+          <div class="cs-info-row" id="cs-rowCan" style="display:none;"><span class="cs-info-key">Canonical</span><span class="cs-info-val" id="cs-pageCanonical">—</span></div>
+          <div class="cs-info-row"><span class="cs-info-key">Country</span><span class="cs-info-val" id="cs-pageCountry">—</span></div>
+        </div>
+
+        <div class="cs-lang-card">
+          <div class="cs-lang-label">Detected language</div>
+          <div class="cs-lang-name" id="cs-langName">—</div>
+          <div class="cs-lang-code" id="cs-langCode">—</div>
+          <div class="cs-confidence-row">
+            <div class="cs-bar-wrap"><div class="cs-bar" id="cs-confBar"></div></div>
+            <div class="cs-bar-pct" id="cs-confPct">—</div>
+          </div>
+          <div class="cs-sources-row" id="cs-sourcesRow"></div>
+        </div>
+
+        <div class="cs-stats-row">
+          <div class="cs-stat-card"><div class="cs-stat-label">Words</div><div class="cs-stat-value" id="cs-wordCount">—</div></div>
+          <div class="cs-stat-card"><div class="cs-stat-label">Characters</div><div class="cs-stat-value" id="cs-charCount">—</div></div>
+        </div>
+
+        <div class="cs-script-section">
+          <div class="cs-script-title">Script composition</div>
+          <div id="cs-scriptBars"></div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- TAB: CTA AUDIT -->
+    <section id="tab-cta" class="tab-panel">
+
+      <div class="audit-header">
+        <p class="audit-desc">Audits CTAs and links: detects empty CTAs, missing links, invalid targets, and verifies HTTP status of all links on the page.</p>
+        <button id="ca-scan" class="btn-primary">Scan Page</button>
+      </div>
+
+      <div id="ca-status" class="audit-status" style="display:none;"></div>
+
+      <!-- Progress bar — shown while background HTTP check runs -->
+      <div id="cl-progress" style="display:none;">
+        <div class="cl-progress-bar">
+          <div id="cl-progress-fill" class="cl-progress-fill"></div>
+        </div>
+        <span id="cl-progress-text" class="dim" style="font-size:11px">0 / 0 links checked</span>
+        <p class="dim" style="font-size:10px;margin:2px 0 0;opacity:.7">Running in background — you can close this popup.</p>
+      </div>
+
+      <!-- All results — hidden until ALL checks complete -->
+      <div id="ca-results" style="display:none;">
+        <div class="audit-actions-row">
+          <button id="ca-highlight" class="btn-ghost audit-action-btn">Highlight All</button>
+          <button id="ca-clear"     class="btn-ghost audit-action-btn">Clear HL</button>
+          <button id="ca-copy"      class="btn-ghost audit-action-btn">Copy Report</button>
+        </div>
+
+        <!-- CTA accordion -->
+        <div class="audit-accordion">
+          <button class="audit-acc-header" data-target="ca-cta-body">
+            <span class="audit-acc-title">CTA</span>
+            <span id="ca-cta-badge" class="audit-counter-badge ok">0</span>
+            <svg class="audit-acc-chevron" viewBox="0 0 10 6" fill="none" width="10" height="6" aria-hidden="true">
+              <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div id="ca-cta-body" class="audit-acc-body">
+            <div class="audit-list" id="ca-cta-list"></div>
+          </div>
+        </div>
+
+        <!-- Links accordion -->
+        <div class="audit-accordion">
+          <button class="audit-acc-header" data-target="ca-link-body">
+            <span class="audit-acc-title">Links</span>
+            <span id="ca-link-badge" class="audit-counter-badge ok">0</span>
+            <svg class="audit-acc-chevron" viewBox="0 0 10 6" fill="none" width="10" height="6" aria-hidden="true">
+              <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div id="ca-link-body" class="audit-acc-body">
+            <div class="audit-list" id="ca-link-list"></div>
+          </div>
+        </div>
+
+        <!-- Check My Links accordion -->
+        <div class="audit-accordion">
+          <button class="audit-acc-header" data-target="cl-body">
+            <span class="audit-acc-title">Check My Links</span>
+            <span id="cl-badge" class="audit-counter-badge ok">0</span>
+            <svg class="audit-acc-chevron" viewBox="0 0 10 6" fill="none" width="10" height="6" aria-hidden="true">
+              <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div id="cl-body" class="audit-acc-body">
+            <div class="audit-list" id="cl-list"></div>
+            <div class="audit-actions-row" style="margin-top:6px">
+              <button id="cl-highlight" class="btn-ghost audit-action-btn">Highlight Errors</button>
+              <button id="cl-clear-hl"  class="btn-ghost audit-action-btn">Clear HL</button>
+            </div>
+          </div>
+        </div>
+
+        <button id="cl-reset" class="btn-ghost" style="width:100%;margin-top:6px;font-size:11px">Clear results</button>
+      </div>
+
+    </section>
+
+
+    <!-- TAB: TEXT CLIPPING (ex-Overflow) -->
+    <section id="tab-overflow" class="tab-panel">
+
+      <div class="audit-header">
+        <p class="audit-desc">Detecta palavras truncadas no meio usando spell-check linguístico (PT/ES/EN).</p>
+        <button id="ov-scan" class="btn-primary">Scan Page</button>
+      </div>
+
+      <div id="ov-status" class="audit-status" style="display:none;"></div>
+      <div id="ov-results" style="display:none;">
+        <div class="audit-summary" id="ov-summary"></div>
+        <div class="audit-actions-row">
+          <button id="ov-highlight" class="btn-ghost audit-action-btn">Highlight</button>
+          <button id="ov-clear"     class="btn-ghost audit-action-btn">Clear</button>
+          <button id="ov-copy"      class="btn-ghost audit-action-btn">Copy List</button>
+        </div>
+        <div class="audit-list" id="ov-list"></div>
+      </div>
+
+    </section>
+
+    <!-- TAB: PAGE TO IMAGE -->
+    <section id="tab-page-to-image" class="tab-panel">
+      <div style="padding:4px 0">
+
+        <div class="audit-actions-row">
+          <button id="pi-canvas-capture" class="btn-capture" style="flex:1">CanvasPNG</button>
+          <button id="pi-pdf-capture"    class="btn-capture" style="flex:1">PDFtoPNG</button>
+        </div>
+      </div>
+
+      <div id="pi-status" class="audit-status" style="display:none;"></div>
+
+      <div id="pi-preview" class="sc-preview" style="display:none;">
+        <img id="pi-img" alt="Page capture preview" style="width:100%;border-radius:4px;margin-top:8px" />
+        <div class="audit-actions-row" style="margin-top:8px">
+          <button id="pi-download" class="btn-ghost" style="flex:1">Download</button>
+          <button id="pi-copy-btn" class="btn-ghost" style="flex:1">Copy Image</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB: MOBILE VIEW (Viewfast) — click intercepted in popup.js, opens side panel -->
+    <section id="tab-viewfast" class="tab-panel"></section>
+
+    <!-- TAB: VIDEO CHECK (ported from qa-video extension) -->
+    <section id="tab-video-check" class="tab-panel">
+
+      <div class="audit-header">
+        <p class="audit-desc">Validates Brightcove/YouTube video status and generates stamped evidence for QA.</p>
+        <button id="vc-scan" class="btn-primary">Verify Videos</button>
+      </div>
+
+      <div id="vc-status" class="audit-status" style="display:none;">
+        <div class="audit-spinner"></div><span id="vc-status-text">Analyzing page and generating evidence...</span>
+      </div>
+
+      <div id="vc-results" class="vc-results"></div>
+
+    </section>
+
+  </div><!-- /group-qa-validation -->
+
+  <!-- ══════════════════════════════════════════
+       GROUP: PRODUCTION
+  ══════════════════════════════════════════ -->
+  <div id="group-production" class="tab-group">
+
+    <nav class="tabs" role="tablist">
+      <button class="tab active" data-tab="aem-author" role="tab" aria-selected="true">
+        <svg viewBox="0 0 14 14" fill="none" width="11" height="11"><circle cx="7" cy="5" r="3" stroke="currentColor" stroke-width="1.2"/><path d="M2 12c0-2.2 2.2-4 5-4s5 1.8 5 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        AEM Author
+      </button>
+      <button class="tab" data-tab="aem-pim" role="tab" aria-selected="false">
+        <svg viewBox="0 0 14 14" fill="none" width="11" height="11"><rect x="1.5" y="1.5" width="11" height="11" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M4 5h6M4 7.5h6M4 10h4" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+        AEM PIM
+      </button>
+      <button class="tab" data-tab="word-markdown" role="tab" aria-selected="false">
+        <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><rect x="1.5" y="1.5" width="11" height="11" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M4 5h3M4 7h6M4 9h4" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/><path d="M10 4.5l1.5 1.5-1.5 1.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Word → MD
+      </button>
+
+      <button class="tab" data-tab="prod-viewfast" role="tab" aria-selected="false">
+        <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><rect x="3" y="1.5" width="8" height="11" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M5.5 10.5h3" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+        Mobile View
+      </button>
+    </nav>
+
+    <!-- TAB: AEM AUTHOR -->
+    <section id="tab-aem-author" class="tab-panel active">
+
+      <div class="aem-badge-row">
+        <span id="aem-country-badge" class="aem-country-badge" style="display:none"></span>
+        <span class="aem-hint">Links gerados da URL da aba ativa</span>
+      </div>
+
+      <div class="aem-card-grid">
+        <div class="aem-card">
+          <span class="aem-card-label">Author</span>
+          <div class="aem-card-btns">
+            <a id="aem-link-author" class="aem-open-btn aem-link-disabled" target="_blank" rel="noopener">Abrir ↗</a>
+            <button class="aem-copy-btn" data-aem-copy="author">Copiar</button>
+          </div>
+        </div>
+        <div class="aem-card">
+          <span class="aem-card-label">Preview</span>
+          <div class="aem-card-btns">
+            <a id="aem-link-preview" class="aem-open-btn aem-link-disabled" target="_blank" rel="noopener">Abrir ↗</a>
+            <button class="aem-copy-btn" data-aem-copy="preview">Copiar</button>
+          </div>
+        </div>
+        <div class="aem-card">
+          <span class="aem-card-label">Assets</span>
+          <div class="aem-card-btns">
+            <a id="aem-link-assets" class="aem-open-btn aem-link-disabled" target="_blank" rel="noopener">Abrir ↗</a>
+            <button class="aem-copy-btn" data-aem-copy="assets">Copiar</button>
+          </div>
+        </div>
+        <div class="aem-card">
+          <span class="aem-card-label">Pre-QA</span>
+          <div class="aem-card-btns">
+            <a id="aem-link-preQa" class="aem-open-btn aem-link-disabled" target="_blank" rel="noopener">Abrir ↗</a>
+            <button class="aem-copy-btn" data-aem-copy="preQa">Copiar</button>
+          </div>
+        </div>
+        <div class="aem-card">
+          <span class="aem-card-label">QA</span>
+          <div class="aem-card-btns">
+            <a id="aem-link-qa" class="aem-open-btn aem-link-disabled" target="_blank" rel="noopener">Abrir ↗</a>
+            <button class="aem-copy-btn" data-aem-copy="qa">Copiar</button>
+          </div>
+        </div>
+        <div class="aem-card">
+          <span class="aem-card-label">Live</span>
+          <div class="aem-card-btns">
+            <a id="aem-link-live" class="aem-open-btn aem-link-disabled" target="_blank" rel="noopener">Abrir ↗</a>
+            <button class="aem-copy-btn" data-aem-copy="live">Copiar</button>
+          </div>
+        </div>
+        <div class="aem-card">
+          <span class="aem-card-label">Directory</span>
+          <div class="aem-card-btns">
+            <a id="aem-link-directory" class="aem-open-btn aem-link-disabled" target="_blank" rel="noopener">Abrir ↗</a>
+            <button class="aem-copy-btn" data-aem-copy="directory">Copiar</button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- TAB: AEM PIM -->
+    <section id="tab-aem-pim" class="tab-panel">
+
+      <div class="aem-card-grid">
+        <div class="aem-card">
+          <span class="aem-card-label">Filtro</span>
+          <div class="aem-card-btns">
+            <a href="https://p6-us-author.samsung.com/aem/pim/b2c/productfunction/filter/page/list" class="aem-open-btn" target="_blank" rel="noopener">Abrir ↗</a>
+            <button class="aem-copy-btn" data-pim-copy="https://p6-us-author.samsung.com/aem/pim/b2c/productfunction/filter/page/list">Copiar</button>
+          </div>
+        </div>
+        <div class="aem-card">
+          <span class="aem-card-label">GNB</span>
+          <div class="aem-card-btns">
+            <a href="https://p6-us-author.samsung.com/site_ia_2025.html/samsung/consumer/siteIA2025/br" class="aem-open-btn" target="_blank" rel="noopener">Abrir ↗</a>
+            <button class="aem-copy-btn" data-pim-copy="https://p6-us-author.samsung.com/site_ia_2025.html/samsung/consumer/siteIA2025/br">Copiar</button>
+          </div>
+        </div>
+        <div class="aem-card">
+          <span class="aem-card-label">Buy Config</span>
+          <div class="aem-card-btns">
+            <a href="https://p6-us-author.samsung.com/aem/pim/b2c/buyingconf/main/page/list" class="aem-open-btn" target="_blank" rel="noopener">Abrir ↗</a>
+            <button class="aem-copy-btn" data-pim-copy="https://p6-us-author.samsung.com/aem/pim/b2c/buyingconf/main/page/list">Copiar</button>
+          </div>
+        </div>
+        <div class="aem-card">
+          <span class="aem-card-label">Registro</span>
+          <div class="aem-card-btns">
+            <a href="https://p6-us-author.samsung.com/aem/pim/b2c/product/onlinetodo/page/list" class="aem-open-btn" target="_blank" rel="noopener">Abrir ↗</a>
+            <button class="aem-copy-btn" data-pim-copy="https://p6-us-author.samsung.com/aem/pim/b2c/product/onlinetodo/page/list">Copiar</button>
+          </div>
+        </div>
+        <div class="aem-card">
+          <span class="aem-card-label">Product Detail</span>
+          <div class="aem-card-btns">
+            <a href="https://p6-us-author.samsung.com/aem/pim/b2c/product/detail/main/page/list" class="aem-open-btn" target="_blank" rel="noopener">Abrir ↗</a>
+            <button class="aem-copy-btn" data-pim-copy="https://p6-us-author.samsung.com/aem/pim/b2c/product/detail/main/page/list">Copiar</button>
+          </div>
+        </div>
+        <div class="aem-card">
+          <span class="aem-card-label">SEO MGMT</span>
+          <div class="aem-card-btns">
+            <a href="https://p6-us-author.samsung.com/aem/pim/b2c/pdsetting/seo/page/list" class="aem-open-btn" target="_blank" rel="noopener">Abrir ↗</a>
+            <button class="aem-copy-btn" data-pim-copy="https://p6-us-author.samsung.com/aem/pim/b2c/pdsetting/seo/page/list">Copiar</button>
+          </div>
+        </div>
+        <div class="aem-card">
+          <span class="aem-card-label">Spec MGMT</span>
+          <div class="aem-card-btns">
+            <a href="https://p6-us-author.samsung.com/aem/pim/b2c/newspec/specattributemgmt/page/list" class="aem-open-btn" target="_blank" rel="noopener">Abrir ↗</a>
+            <button class="aem-copy-btn" data-pim-copy="https://p6-us-author.samsung.com/aem/pim/b2c/newspec/specattributemgmt/page/list">Copiar</button>
+          </div>
+        </div>
+        <div class="aem-card">
+          <span class="aem-card-label">Single Category</span>
+          <div class="aem-card-btns">
+            <a href="https://p6-us-author.samsung.com/aem/pim/b2c/productia/singleproductcategorychange/page/familylist" class="aem-open-btn" target="_blank" rel="noopener">Abrir ↗</a>
+            <button class="aem-copy-btn" data-pim-copy="https://p6-us-author.samsung.com/aem/pim/b2c/productia/singleproductcategorychange/page/familylist">Copiar</button>
+          </div>
+        </div>
+        <div class="aem-card">
+          <span class="aem-card-label">Reasons to Buy</span>
+          <div class="aem-card-btns">
+            <a href="https://p6-us-author.samsung.com/aem/pim/b2c/productfunction/reasonstobuy/page/list" class="aem-open-btn" target="_blank" rel="noopener">Abrir ↗</a>
+            <button class="aem-copy-btn" data-pim-copy="https://p6-us-author.samsung.com/aem/pim/b2c/productfunction/reasonstobuy/page/list">Copiar</button>
+          </div>
+        </div>
+        <div class="aem-card">
+          <span class="aem-card-label">Local Benefit</span>
+          <div class="aem-card-btns">
+            <a href="https://p6-us-author.samsung.com/aem/pim/b2c/productfunction/localbenefit/page/list" class="aem-open-btn" target="_blank" rel="noopener">Abrir ↗</a>
+            <button class="aem-copy-btn" data-pim-copy="https://p6-us-author.samsung.com/aem/pim/b2c/productfunction/localbenefit/page/list">Copiar</button>
+          </div>
+        </div>
+        <div class="aem-card">
+          <span class="aem-card-label">Best Match</span>
+          <div class="aem-card-btns">
+            <a href="https://p6-us-author.samsung.com/aem/pim/global/setting/search/bestmatch/page/list" class="aem-open-btn" target="_blank" rel="noopener">Abrir ↗</a>
+            <button class="aem-copy-btn" data-pim-copy="https://p6-us-author.samsung.com/aem/pim/global/setting/search/bestmatch/page/list">Copiar</button>
+          </div>
+        </div>
+        <div class="aem-card">
+          <span class="aem-card-label">Product Option</span>
+          <div class="aem-card-btns">
+            <a href="https://p6-us-author.samsung.com/aem/pim/b2c/productfunction/option/page/list" class="aem-open-btn" target="_blank" rel="noopener">Abrir ↗</a>
+            <button class="aem-copy-btn" data-pim-copy="https://p6-us-author.samsung.com/aem/pim/b2c/productfunction/option/page/list">Copiar</button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- TAB: WORD TO MARKDOWN -->
+    <section id="tab-word-markdown" class="tab-panel">
+
+      <div class="audit-header">
+        <p class="audit-desc">Copie texto no Word (<b>Ctrl+C</b>), cole abaixo e clique em Converter. Links e negrito são preservados automaticamente.</p>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Texto do Word</label>
+        <textarea id="wm-input" class="field-textarea" rows="4"
+                  placeholder="Cole aqui o texto copiado do Word (Ctrl+V)..."></textarea>
+        <p id="wm-status" class="wm-status"></p>
+      </div>
+
+      <div class="audit-actions-row" style="flex-wrap:wrap;gap:6px">
+        <button id="wm-convert" class="btn-primary">Converter</button>
+        <button id="wm-clear" class="btn-ghost">Limpar</button>
+        <div id="wm-badges" class="wm-badges"></div>
+      </div>
+
+      <div class="field-group" style="margin-top:10px">
+        <label class="field-label">Resultado em Markdown</label>
+        <textarea id="wm-output" class="field-textarea" rows="4" readonly
+                  placeholder="O resultado aparecerá aqui..."
+                  style="font-family:var(--font-mono);font-size:11px;line-height:1.6"></textarea>
+      </div>
+
+      <div class="audit-actions-row">
+        <button id="wm-copy" class="btn-ghost" style="flex:1">Copiar resultado</button>
+      </div>
+
+    </section>
+
+
+
+    <!-- TAB: MOBILE VIEW (click intercepted in popup.js, opens side panel) -->
+    <section id="tab-prod-viewfast" class="tab-panel"></section>
+
+  </div><!-- /group-production -->
+
+  <!-- ── Settings overlay panel ── -->
+  <div id="settings-panel" class="settings-panel" role="dialog" aria-label="Settings">
+    <div class="settings-panel-header">
+      <div class="settings-panel-title">
+        <svg id="settings-title-icon" viewBox="0 0 18 18" fill="none" width="14" height="14" style="cursor:pointer">
+          <circle cx="9" cy="9" r="2.4" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M9 1.5v1.6M9 14.9v1.6M1.5 9h1.6M14.9 9h1.6M3.93 3.93l1.13 1.13M12.94 12.94l1.13 1.13M14.07 3.93l-1.13 1.13M5.06 12.94l-1.13 1.13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+        Settings
+      </div>
+      <button id="settings-close" class="btn-icon" aria-label="Close settings">
+        <svg viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="settings-body">
+      <div class="settings-docs-row">
+        <button id="open-docs-btn" class="btn-xs" style="display:inline-flex;align-items:center;gap:4px;font-size:11px">
+          <svg viewBox="0 0 14 14" fill="none" width="10" height="10">
+            <rect x="2" y="1" width="10" height="12" rx="1.5" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M4.5 4.5h5M4.5 7h5M4.5 9.5h3" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+          </svg>
+          View Documentation
+        </button>
+      </div>
+      <div class="settings-section">
+        <div class="settings-section-title">Account</div>
+        <div class="field-group">
+          <label class="field-label">QA Username <span class="settings-hint">used in Report &amp; QuickText</span></label>
+          <input type="text" id="set-username" class="field-input" placeholder="Your team username" autocomplete="off" />
+        </div>
+        <div class="field-group">
+          <label class="field-label">QA ID <span class="settings-hint">used in Checklist filename</span></label>
+          <input type="text" id="set-qa-id" class="field-input" placeholder="Your QA ID" autocomplete="off" />
+        </div>
+        <div class="field-group">
+          <label class="field-label">Cheil E-mail <span class="settings-hint">sent to the Report sheet</span></label>
+          <input type="email" id="set-qa-email" class="field-input" placeholder="name@cheil.com" autocomplete="off" spellcheck="false" />
+        </div>
+      </div>
+      <div class="settings-section">
+        <div class="settings-section-title">Report module</div>
+        <div class="field-group">
+          <label class="field-label">Apps Script URL</label>
+          <input type="text" id="set-reportUrl" class="field-input" placeholder="https://script.google.com/…" />
+        </div>
+      </div>
+      <div class="settings-section">
+        <div class="settings-section-title">SnapSlide module</div>
+        <div class="field-group">
+          <label class="field-label">Apps Script URL</label>
+          <input type="text" id="set-snapUrl" class="field-input" placeholder="https://script.google.com/…" />
+        </div>
+        <div class="field-group">
+          <label class="field-label">Default Presentation ID</label>
+          <input type="text" id="set-snapPresId" class="field-input" placeholder="Google Slides presentation ID" />
+        </div>
+      </div>
+      <div class="settings-section">
+        <div class="settings-section-title">
+          QuickText Templates
+          <span class="settings-hint">use {user_name} as placeholder</span>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Template</label>
+          <select id="set-qt-select" class="field-select">
+            <optgroup label="Approved">
+              <option value="approved">Approved</option>
+              <option value="athena_na">Athena N/A</option>
+              <option value="eol">EOL</option>
+            </optgroup>
+            <optgroup label="Rejected">
+              <option value="rejected">Rejected</option>
+              <option value="athena_fail">Athena Fail</option>
+            </optgroup>
+            <optgroup label="ShopApp">
+              <option value="published">Published</option>
+              <option value="non_published">Non Published</option>
+              <option value="shop_rejected">Rejected (ShopApp)</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Content</label>
+          <textarea id="set-qt-body" class="field-textarea" rows="7" style="font-size:10px;line-height:1.5;white-space:pre"></textarea>
+        </div>
+        <button id="set-qt-reset" type="button" class="btn-ghost" style="width:100%">
+          <svg viewBox="0 0 14 14" fill="none" width="11" height="11"><path d="M2 7a5 5 0 1 0 1-3M2 2v3h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Reset to default
+        </button>
+      </div>
+      <button id="settings-save" class="btn-primary" style="width:100%;margin-top:4px">Save Settings</button>
+      <div id="settings-saved" class="settings-saved"></div>
+    </div>
+  </div>
+
+  <!-- ── SEO overlay panel ── -->
+  <div id="seo-panel" class="settings-panel" role="dialog" aria-label="SEO Report">
+    <div class="settings-panel-header">
+      <div class="settings-panel-title">SEO Report</div>
+      <div style="display:flex; gap:4px;">
+        <button id="seo-rescan" class="btn-icon" title="Rescan page" aria-label="Rescan page">
+          <svg viewBox="0 0 14 14" fill="none" width="12" height="12"><path d="M2 7a5 5 0 1 0 1-3M2 2v3h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button id="seo-close" class="btn-icon" aria-label="Close SEO panel">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="settings-body">
+
+      <div class="seo-search-wrap">
+        <input type="text" id="seo-search-input" class="field-input" placeholder="Search headings & meta fields…" autocomplete="off" />
+        <span id="seo-match-count" class="seo-match-badge"></span>
+      </div>
+
+      <div id="seo-status" class="audit-status" style="display:none;">
+        <div class="audit-spinner"></div><span id="seo-status-text">Scanning…</span>
+      </div>
+
+      <div class="settings-section">
+        <div class="settings-section-title">Page</div>
+        <div class="cs-info-card">
+          <div class="cs-info-row"><span class="cs-info-key">URL</span><span class="cs-info-val" id="seo-url">—</span></div>
+          <div class="cs-info-row"><span class="cs-info-key">title&gt;</span><span class="cs-info-val" id="seo-title">—</span></div>
+          <div class="cs-info-row"><span class="cs-info-key">description&gt;</span><span class="cs-info-val" id="seo-desc">—</span></div>
+          <div class="cs-info-row"><span class="cs-info-key">keyword&gt;</span><span class="cs-info-val" id="seo-keywords">—</span></div>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <div class="settings-section-title">Headings (document order)</div>
+        <div id="seo-headings-list" class="seo-headings-list"></div>
+        <div id="seo-headings-empty" class="seo-empty-note" style="display:none;">No heading elements found on this page.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Reporting: seletor de Author (usado pela aba Report) -->
+  <div id="author-picker" class="author-picker" role="dialog" aria-modal="true" aria-labelledby="ap-title">
+    <div class="ap-header">
+      <div class="ap-heading">
+        <div id="ap-title" class="ap-title">Who made this ticket?</div>
+        <div id="ap-sub" class="ap-sub">Pick the author of the ticket.</div>
+      </div>
+      <button id="ap-close" class="btn-icon" title="Close" aria-label="Close">
+        <svg viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <div class="ap-search">
+      <input type="text" id="ap-search" class="field-input" placeholder="Search by name or e-mail" autocomplete="off" aria-label="Search by name or e-mail" />
+      <button type="button" id="ap-add" class="btn-ghost ap-add" title="Add a publisher that is not on the list">
+        <svg viewBox="0 0 14 14" fill="none"><path d="M7 3v8M3 7h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Add new publisher
+      </button>
+    </div>
+
+    <nav id="ap-tabs" class="ap-tabs" role="tablist" aria-label="Author groups"></nav>
+
+    <div id="ap-grid" class="ap-grid" role="listbox" aria-labelledby="ap-title"></div>
+    <p id="ap-empty" class="ap-empty">No name matches your search.</p>
+
+    <div class="ap-footer">
+      <span id="ap-selected" class="ap-selected">No author selected</span>
+      <button type="button" id="ap-remove" class="btn-ghost ap-remove" hidden>Remove</button>
+      <button id="ap-cancel" class="btn-ghost">Cancel</button>
+      <button id="ap-confirm" class="btn-primary" disabled>Confirm</button>
+    </div>
+  </div>
+
+  <!-- Reporting: cadastro de novo publisher -->
+  <div id="np-dialog" class="np-dialog" role="dialog" aria-modal="true" aria-labelledby="np-title">
+    <div class="np-card">
+      <div id="np-title" class="np-title">Add new publisher</div>
+      <p class="np-sub">For new team members who are not on the list yet. They will be shared with the whole team. Only @cheil.com e-mails are allowed.</p>
+
+      <div class="np-row">
+        <div class="field-group">
+          <label class="field-label" for="np-first">First name <span class="required">*</span></label>
+          <input type="text" id="np-first" class="field-input" placeholder="First name" autocomplete="off" />
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="np-last">Last name <span class="required">*</span></label>
+          <input type="text" id="np-last" class="field-input" placeholder="Last name" autocomplete="off" />
+        </div>
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="np-email">E-mail <span class="required">*</span></label>
+        <input type="email" id="np-email" class="field-input" placeholder="name@cheil.com" autocomplete="off" spellcheck="false" />
+      </div>
+
+      <p id="np-error" class="np-error" role="alert"></p>
+      <div class="np-actions">
+        <button type="button" id="np-cancel" class="btn-ghost">Cancel</button>
+        <button type="button" id="np-save" class="btn-primary">Add publisher</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reporting: quantidade de Publisher error / Pending customer (REJECTED / PENDING) -->
+  <div id="count-dialog" class="count-dialog" role="dialog" aria-modal="true" aria-labelledby="cd-title">
+    <div class="cd-card">
+      <span id="cd-status" class="cd-status"></span>
+      <div id="cd-title" class="cd-title"></div>
+      <p id="cd-sub" class="cd-sub"></p>
+
+      <div class="cd-stepper">
+        <button type="button" id="cd-minus" class="cd-step" aria-label="Decrease">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+        <input type="number" id="cd-input" class="field-input cd-input" min="1" step="1" inputmode="numeric" placeholder="0" aria-labelledby="cd-title" />
+        <button type="button" id="cd-plus" class="cd-step" aria-label="Increase">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M7 3v8M3 7h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <p id="cd-error" class="cd-error"></p>
+
+      <div class="cd-actions">
+        <button type="button" id="cd-cancel" class="btn-ghost">Cancel</button>
+        <button type="button" id="cd-confirm" class="btn-primary">Send Report</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cadastro obrigatório do perfil (primeiro uso) -->
+  <div id="profile-dialog" class="profile-dialog" role="dialog" aria-modal="true" aria-labelledby="pf-title">
+    <div class="pf-card">
+      <div class="pf-badge">WPC Hub</div>
+      <div id="pf-title" class="pf-title">Welcome! Set up your profile</div>
+      <p class="pf-sub">These details are required to use the extension. You can change them later in Settings.</p>
+
+      <div class="pf-fields">
+        <div class="field-group">
+          <label class="field-label" for="pf-name">Name <span class="required">*</span></label>
+          <input type="text" id="pf-name" class="field-input" placeholder="Your full name" autocomplete="off" />
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="pf-id">QA ID <span class="required">*</span></label>
+          <input type="text" id="pf-id" class="field-input" placeholder="Your QA ID" autocomplete="off"
+                 autocorrect="off" autocapitalize="off" spellcheck="false" />
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="pf-email">Cheil E-mail <span class="required">*</span></label>
+          <input type="email" id="pf-email" class="field-input" placeholder="name@cheil.com" autocomplete="off" spellcheck="false" />
+        </div>
+      </div>
+
+      <p id="pf-error" class="pf-error" role="alert"></p>
+      <button type="button" id="pf-save" class="btn-primary pf-save">Save and continue</button>
+    </div>
+  </div>
+
+  <!-- Toast global -->
+  <div class="toast" id="toast"></div>
+
+  <script src="lib/typo.min.js"></script>
+  <script src="lib/compat.js"></script>
+  <script src="lib/pdf.min.js"></script>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

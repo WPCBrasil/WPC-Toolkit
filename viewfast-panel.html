@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mobile Preview — WPC Hub</title>
+  <link rel="stylesheet" href="viewfast-panel.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="vf-navbar">
+    <button id="vf-refresh" title="Reload">
+      <svg viewBox="0 0 20 20" fill="none" width="18" height="18">
+        <path d="M4 10a6 6 0 0 1 6-6 6 6 0 0 1 4.24 1.76L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M16 4v4h-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M16 10a6 6 0 0 1-6 6 6 6 0 0 1-4.24-1.76L4 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M4 16v-4h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <input type="text" id="vf-url" placeholder="URL…" />
+
+    <button id="vf-search" title="Load URL">
+      <svg viewBox="0 0 20 20" fill="none" width="18" height="18">
+        <circle cx="9" cy="9" r="5.5" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M13.5 13.5l3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+  </div>
+
+  <!-- Mobile device frame -->
+  <div class="vf-device">
+    <iframe id="vf-frame"></iframe>
+  </div>
+
+  <script src="viewfast-panel.js"></script>
+</body>
+</html>
