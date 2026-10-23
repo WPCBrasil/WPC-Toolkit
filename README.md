@@ -42,11 +42,6 @@ No build step required — the extension runs directly from source files.
 | **Text Clipping** | Detects visually truncated words using language-specific analysis (PT-BR, ES-ES, EN-US) |
 | **Mobile View** | Opens a side panel with the current page rendered at a 390×844 px mobile viewport |
 
-### 🛒 ShopApp
-
-| Module | Description |
-|--------|-------------|
-| **ShopApp Tools** | Injects visual helpers into ShopApp CMS pages: toggle component borders, show/hide titles, reveal/hide expired items |
 
 ---
 
@@ -106,7 +101,6 @@ Before using the extension, configure your account information via **Settings**:
 | Link Check | QA & Validation | — | Audit Links → Scroll to violation |
 | Text Clipping | QA & Validation | — | Scan Page → Highlight clipped elements |
 | Mobile View | QA & Validation | — | Opens side panel at 390 px viewport |
-| ShopApp Tools | ShopApp | — | Works on `opstools-p1-*.ecom-qa` pages only |
 
 ---
 
@@ -132,7 +126,6 @@ wpc-hub/
 │   ├── quicktext.js
 │   ├── snapslide.js
 │   ├── countryscan.js
-│   ├── shopapp.js
 │   ├── screenshot.js
 │   ├── text-overflow.js
 │   ├── cta-audit.js
@@ -146,8 +139,6 @@ wpc-hub/
     ├── cta-audit-content.js
     ├── link-audit-content.js
     ├── widget-organizer.js
-    ├── shopapp-content.js
-    └── shopapp-*.js
 ```
 
 ---
@@ -225,13 +216,6 @@ Não há etapa de build — a extensão roda diretamente a partir dos arquivos f
 | **Text Clipping** | Detecta palavras truncadas visualmente usando análise linguística específica (PT-BR, ES-ES, EN-US) |
 | **Mobile View** | Abre um painel lateral com a página atual renderizada em viewport mobile de 390×844 px |
 
-### 🛒 ShopApp
-
-| Módulo | Descrição |
-|--------|-----------|
-| **ShopApp Tools** | Injeta helpers visuais em páginas do CMS ShopApp: alternar bordas de componentes, exibir/ocultar títulos e itens expirados |
-
----
 
 ## Instalação
 
@@ -289,8 +273,6 @@ Antes de usar a extensão, configure suas informações de conta via **Configura
 | Link Check | QA & Validação | — | Audit Links → rolar até a violação |
 | Text Clipping | QA & Validação | — | Scan Page → destacar elementos cortados |
 | Mobile View | QA & Validação | — | Abre painel lateral com viewport de 390 px |
-| ShopApp Tools | ShopApp | — | Funciona apenas em páginas `opstools-p1-*.ecom-qa` |
-
 ---
 
 ## Estrutura do Projeto
@@ -315,7 +297,6 @@ wpc-hub/
 │   ├── quicktext.js
 │   ├── snapslide.js
 │   ├── countryscan.js
-│   ├── shopapp.js
 │   ├── screenshot.js
 │   ├── text-overflow.js
 │   ├── cta-audit.js
@@ -329,8 +310,6 @@ wpc-hub/
     ├── cta-audit-content.js
     ├── link-audit-content.js
     ├── widget-organizer.js
-    ├── shopapp-content.js
-    └── shopapp-*.js
 ```
 
 ---
